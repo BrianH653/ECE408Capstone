@@ -1,0 +1,1 @@
+/home/brian_holland/Desktop/capstone/ros_ws/src/ht301_thermal_ros/launch/vid2_launch_thermal_bridge.py

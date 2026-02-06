@@ -1,0 +1,22 @@
+running egg_info
+writing ../../build/ht301_thermal_ros/ht301_thermal_ros.egg-info/PKG-INFO
+writing dependency_links to ../../build/ht301_thermal_ros/ht301_thermal_ros.egg-info/dependency_links.txt
+writing entry points to ../../build/ht301_thermal_ros/ht301_thermal_ros.egg-info/entry_points.txt
+writing requirements to ../../build/ht301_thermal_ros/ht301_thermal_ros.egg-info/requires.txt
+writing top-level names to ../../build/ht301_thermal_ros/ht301_thermal_ros.egg-info/top_level.txt
+reading manifest file '../../build/ht301_thermal_ros/ht301_thermal_ros.egg-info/SOURCES.txt'
+writing manifest file '../../build/ht301_thermal_ros/ht301_thermal_ros.egg-info/SOURCES.txt'
+running build
+running build_py
+copying ht301_thermal_ros/ht301_thermal_publisher.py -> /home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros/build/lib/ht301_thermal_ros
+running install
+running install_lib
+copying /home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros/build/lib/ht301_thermal_ros/ht301_thermal_publisher.py -> /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros
+byte-compiling /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/ht301_thermal_publisher.py to ht301_thermal_publisher.cpython-312.pyc
+running install_data
+running install_egg_info
+removing '/home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros-0.0.0-py3.12.egg-info' (and everything under it)
+Copying ../../build/ht301_thermal_ros/ht301_thermal_ros.egg-info to /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros-0.0.0-py3.12.egg-info
+running install_scripts
+Installing ht301_thermal_publisher script to /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/ht301_thermal_ros
+writing list of installed files to '/home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros/install.log'

@@ -1,0 +1,15 @@
+running develop
+running egg_info
+writing ht301_thermal_ros.egg-info/PKG-INFO
+writing dependency_links to ht301_thermal_ros.egg-info/dependency_links.txt
+writing entry points to ht301_thermal_ros.egg-info/entry_points.txt
+writing requirements to ht301_thermal_ros.egg-info/requires.txt
+writing top-level names to ht301_thermal_ros.egg-info/top_level.txt
+reading manifest file 'ht301_thermal_ros.egg-info/SOURCES.txt'
+writing manifest file 'ht301_thermal_ros.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301-thermal-ros.egg-link (link to .)
+Installing ht301_thermal_publisher script to /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/ht301_thermal_ros
+
+Installed /home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros
+running symlink_data

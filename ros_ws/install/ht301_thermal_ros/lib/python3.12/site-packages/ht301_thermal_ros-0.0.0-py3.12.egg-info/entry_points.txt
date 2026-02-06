@@ -1,0 +1,2 @@
+[console_scripts]
+ht301_thermal_publisher = ht301_thermal_ros.ht301_thermal_publisher:main

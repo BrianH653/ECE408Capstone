@@ -1,0 +1,17 @@
+[0.655s] Invoking command in '/home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros/build --no-deps symlink_data
+[0.913s] running develop
+[1.074s] running egg_info
+[1.090s] writing ht301_thermal_ros.egg-info/PKG-INFO
+[1.090s] writing dependency_links to ht301_thermal_ros.egg-info/dependency_links.txt
+[1.090s] writing entry points to ht301_thermal_ros.egg-info/entry_points.txt
+[1.090s] writing requirements to ht301_thermal_ros.egg-info/requires.txt
+[1.091s] writing top-level names to ht301_thermal_ros.egg-info/top_level.txt
+[1.123s] reading manifest file 'ht301_thermal_ros.egg-info/SOURCES.txt'
+[1.123s] writing manifest file 'ht301_thermal_ros.egg-info/SOURCES.txt'
+[1.140s] running build_ext
+[1.140s] Creating /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301-thermal-ros.egg-link (link to .)
+[1.140s] Installing ht301_thermal_publisher script to /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/ht301_thermal_ros
+[1.141s] 
+[1.141s] Installed /home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros
+[1.141s] running symlink_data
+[1.164s] Invoked command in '/home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/brian_holland/Desktop/capstone/ros_ws/build/ht301_thermal_ros/build --no-deps symlink_data
