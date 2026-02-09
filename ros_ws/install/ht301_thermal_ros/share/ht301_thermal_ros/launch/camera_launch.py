@@ -5,14 +5,18 @@ from launch_ros.actions import Node, PushRosNamespace
 
 
 def generate_launch_description():
-    # Shared arguments
-    device_webcam = DeclareLaunchArgument('device_webcam', default_value='/dev/video0')
+    # shared camera arguments
+    # device_webcam = DeclareLaunchArgument('device_webcam', default_value='/dev/video0')
+    device_webcam = DeclareLaunchArgument(
+        'device_webcam',
+        default_value='/dev/v4l/by-id/usb-Innomaker_Innomaker-U20CAM-720P_SN0001-video-index0'
+    )
 
     width  = DeclareLaunchArgument('width',  default_value='640')
     height = DeclareLaunchArgument('height', default_value='360')
     fps    = DeclareLaunchArgument('fps',    default_value='25')
 
-    # Thermal overlay args (launch-time toggles)
+    # IR camera arguments only
     thermal_overlay_fps    = DeclareLaunchArgument('thermal_overlay_fps',    default_value='false') # only from camera to pi (not streaming over network)
     thermal_overlay_min    = DeclareLaunchArgument('thermal_overlay_min',    default_value='false')
     thermal_overlay_max    = DeclareLaunchArgument('thermal_overlay_max',    default_value='true')
@@ -36,7 +40,6 @@ def generate_launch_description():
         ),
     ])
 
-    # Thermal camera: publish from ht301_hacklib (no upscale; matches width/height)
     thermal_group = GroupAction([
         PushRosNamespace('usbcam'),
         Node(

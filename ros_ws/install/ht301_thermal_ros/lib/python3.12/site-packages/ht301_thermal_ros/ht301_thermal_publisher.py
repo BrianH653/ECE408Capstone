@@ -2,13 +2,6 @@
 """
 ROS 2 publisher for HT301 thermal camera (ht301_hacklib) -> sensor_msgs/Image
 
-Updates:
-- Removes "upscale": output size is controlled by out_width/out_height parameters.
-- Adds overlay parameters (toggle FPS text, min/max labels, temperature bar, etc.).
-- Keeps aspect ratio using letterboxing when landscape=True.
-- Avoids cv_bridge (fills sensor_msgs/Image directly).
-- QoS is tuned for low-latency streaming (BEST_EFFORT, depth=1).
-
 Topics (within your namespace, e.g. /usbcam):
 - image_raw
 - camera_info
@@ -170,24 +163,24 @@ class HT301ThermalPublisher(Node):
     def __init__(self):
         super().__init__("ht301_thermal_publisher")
 
-        # Parameters (ints to avoid Jazzy launch typing surprises)
+        # parameters (ints to avoid Jazzy launch typing surprises)
         self.declare_parameter("fps", 25)
         self.declare_parameter("out_width", 640)
         self.declare_parameter("out_height", 360)
 
         self.declare_parameter("colormap_index", 3)
-        self.declare_parameter("orientation", 0)  # 0/90/180/270
+        self.declare_parameter("orientation", 0) # 0/90/180/270
         self.declare_parameter("frame_id", "thermal_optical_frame")
         self.declare_parameter("landscape", True)
 
-        # Overlay toggles
+        # overlay toggles
         self.declare_parameter("overlay_fps", True)
         self.declare_parameter("overlay_min", True)
         self.declare_parameter("overlay_max", True)
         self.declare_parameter("overlay_center", False)
         self.declare_parameter("overlay_bar", True)
-        self.declare_parameter("overlay_text", True)  # show text labels next to markers
-        self.declare_parameter("p_low", 2.0)          # auto_scale percentiles
+        self.declare_parameter("overlay_text", True) # show text labels next to markers
+        self.declare_parameter("p_low", 2.0) # auto_scale percentiles
         self.declare_parameter("p_high", 98.0)
 
         self.fps = float(self.get_parameter("fps").value)
@@ -211,16 +204,15 @@ class HT301ThermalPublisher(Node):
         # fps counter
         self.fps_counter = FPSCounter(alpha=0.85)
         
-        # Camera
+        # camera
         self.camera = ht301_hacklib.Camera()
 
-        # Optional: one-time calibration at startup
+        # one-time calibration at startup
         try:
             self.camera.calibrate()
         except Exception as e:
             self.get_logger().warn(f"Initial calibrate() failed: {e}")
 
-        # QoS for low-latency video (drop old frames)
         qos = QoSProfile(
             reliability=ReliabilityPolicy.RELIABLE,
             history=HistoryPolicy.KEEP_LAST,

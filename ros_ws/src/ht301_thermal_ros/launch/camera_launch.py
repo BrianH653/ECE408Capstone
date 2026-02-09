@@ -6,7 +6,11 @@ from launch_ros.actions import Node, PushRosNamespace
 
 def generate_launch_description():
     # shared camera arguments
-    device_webcam = DeclareLaunchArgument('device_webcam', default_value='/dev/video0')
+    # device_webcam = DeclareLaunchArgument('device_webcam', default_value='/dev/video0')
+    device_webcam = DeclareLaunchArgument(
+        'device_webcam',
+        default_value='/dev/v4l/by-id/usb-Innomaker_Innomaker-U20CAM-720P_SN0001-video-index0'
+    )
 
     width  = DeclareLaunchArgument('width',  default_value='640')
     height = DeclareLaunchArgument('height', default_value='360')
