@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ROS Temp Test (Full)</title>
+  <script src="https://cdn.jsdelivr.net/npm/roslib/build/roslib.min.js"></script>
+</head>
+<body>
+  <h2>HT301 Temperature Data</h2>
+
+  <p>Status: <b id="status">connecting...</b></p>
+
+  <hr>
+
+  <h3>Center</h3>
+  <p>Temp: <span id="center_c">--</span></p>
+  <p>Pixel: <span id="center_px">--</span></p>
+  <p>Timestamp: <span id="center_ts">--</span></p>
+
+  <h3>Min</h3>
+  <p>Temp: <span id="min_c">--</span></p>
+  <p>Pixel: <span id="min_px">--</span></p>
+  <p>Timestamp: <span id="min_ts">--</span></p>
+
+  <h3>Max</h3>
+  <p>Temp: <span id="max_c">--</span></p>
+  <p>Pixel: <span id="max_px">--</span></p>
+  <p>Timestamp: <span id="max_ts">--</span></p>
+
+<script>
+  const statusEl = document.getElementById("status");
+
+  // Connect to rosbridge (use your laptop IP for phone access)
+  const ros = new ROSLIB.Ros({
+    url: "ws://10.207.20.137:9090"
+  });
+
+  ros.on("connection", () => {
+    statusEl.textContent = "CONNECTED";
+  });
+
+  ros.on("error", (error) => {
+    statusEl.textContent = "ERROR";
+    console.log("Error:", error);
+  });
+
+  ros.on("close", () => {
+    statusEl.textContent = "CLOSED";
+  });
+
+  function formatStamp(stamp) {
+    if (!stamp) return "--";
+    return stamp.sec + "." + String(stamp.nanosec).padStart(9, '0');
+  }
+
+  function subscribeFloat(topicName, elementId) {
+    const topic = new ROSLIB.Topic({
+      ros: ros,
+      name: topicName,
+      messageType: "std_msgs/msg/Float32"
+    });
+
+    topic.subscribe(function(message) {
+      document.getElementById(elementId).innerText =
+        message.data.toFixed(2) + " °C";
+    });
+  }
+
+  function subscribePoint(topicName, pxId, tsId) {
+    const topic = new ROSLIB.Topic({
+      ros: ros,
+      name: topicName,
+      messageType: "geometry_msgs/msg/PointStamped"
+    });
+
+    topic.subscribe(function(message) {
+      const x = message.point.x.toFixed(0);
+      const y = message.point.y.toFixed(0);
+
+      document.getElementById(pxId).innerText =
+        "(" + x + ", " + y + ")";
+
+      document.getElementById(tsId).innerText =
+        formatStamp(message.header.stamp);
+    });
+  }
+
+  // Temperature topics
+  subscribeFloat("/usbcam/temp/center_c", "center_c");
+  subscribeFloat("/usbcam/temp/min_c", "min_c");
+  subscribeFloat("/usbcam/temp/max_c", "max_c");
+
+  // Pixel + timestamp topics
+  subscribePoint("/usbcam/temp/center_pixel", "center_px", "center_ts");
+  subscribePoint("/usbcam/temp/min_pixel", "min_px", "min_ts");
+  subscribePoint("/usbcam/temp/max_pixel", "max_px", "max_ts");
+
+</script>
+</body>
+</html>

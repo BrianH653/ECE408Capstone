@@ -21,7 +21,7 @@ Installed on pi 4 (ubuntu 24.04 LTS Desktop) with ros2 jazzy
 - sudo apt install ros-${ROS_DISTRO}-v4l2-camera
 - sudo apt install ros-${ROS_DISTRO}-image-transport-plugins
 - sudo apt install ros-${ROS_DISTRO}-web-video-server
-
+- sudo apt install ros-${ROS_DISTRO}-rosbridge-server
 
 
 
@@ -44,3 +44,16 @@ view available streams: http://localhost:8080
 Ros packages for reference:
 - https://gitlab.com/boldhearts/ros2_v4l2_camera
 - https://github.com/RobotWebTools/web_video_server
+
+
+
+*Test non-video streaming*
+
+1. Run launch file
+    ros2 launch ht301_thermal_ros camera_launch.py
+
+2. go to temp_test/html folder and run:
+    python3 -m http.server 8000
+
+3. Open browser
+    http://localhost:8000/temp_test.html

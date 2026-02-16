@@ -11,6 +11,7 @@ setup.py
 ht301_thermal_ros/__init__.py
 ht301_thermal_ros/ht301_hacklib.py
 ht301_thermal_ros/ht301_thermal_publisher.py
+ht301_thermal_ros/ht301_thermal_publisher_orig.py
 launch/camera_launch.py
 resource/ht301_thermal_ros
 test/test_copyright.py

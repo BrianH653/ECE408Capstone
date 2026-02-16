@@ -17,6 +17,8 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 
 from sensor_msgs.msg import Image, CameraInfo
+from std_msgs.msg import Float32
+from geometry_msgs.msg import PointStamped
 
 from . import ht301_hacklib
 import time
@@ -221,6 +223,17 @@ class HT301ThermalPublisher(Node):
         self.pub_image = self.create_publisher(Image, "image_raw", qos)
         self.pub_info = self.create_publisher(CameraInfo, "camera_info", qos)
 
+        # temperature telemetry (Celsius)
+        self.pub_temp_min_c = self.create_publisher(Float32, "temp/min_c", qos)
+        self.pub_temp_max_c = self.create_publisher(Float32, "temp/max_c", qos)
+        self.pub_temp_center_c = self.create_publisher(Float32, "temp/center_c", qos)
+
+        # pixel locations in the *sensor* frame (x=column, y=row)
+        self.pub_temp_min_px = self.create_publisher(PointStamped, "temp/min_pixel", qos)
+        self.pub_temp_max_px = self.create_publisher(PointStamped, "temp/max_pixel", qos)
+        self.pub_temp_center_px = self.create_publisher(PointStamped, "temp/center_pixel", qos)
+
+
         period = 1.0 / max(0.1, self.fps)
         self.timer = self.create_timer(period, self._tick)
 
@@ -337,6 +350,37 @@ class HT301ThermalPublisher(Node):
                 cv2.LINE_AA,
             )
         stamp = self.get_clock().now().to_msg()
+
+        # ---- publish temperature telemetry (same timestamp as the image) ----
+        try:
+            msg = Float32()
+            msg.data = float(info["Tmin_C"])
+            self.pub_temp_min_c.publish(msg)
+
+            msg = Float32()
+            msg.data = float(info["Tmax_C"])
+            self.pub_temp_max_c.publish(msg)
+
+            msg = Float32()
+            msg.data = float(info["Tcenter_C"])
+            self.pub_temp_center_c.publish(msg)
+
+            def _pub_px(pub, pt_xy):
+                # hacklib uses (x, y) in sensor pixel coordinates
+                ps = PointStamped()
+                ps.header.stamp = stamp
+                ps.header.frame_id = self.frame_id
+                ps.point.x = float(pt_xy[0])
+                ps.point.y = float(pt_xy[1])
+                ps.point.z = 0.0
+                pub.publish(ps)
+
+            _pub_px(self.pub_temp_min_px, info["Tmin_point"])
+            _pub_px(self.pub_temp_max_px, info["Tmax_point"])
+            _pub_px(self.pub_temp_center_px, info["Tcenter_point"])
+        except Exception as e:
+            self.get_logger().warn(f"Temp publish failed: {e}")
+
         self.pub_image.publish(cv_to_imgmsg_bgr8(frame_color, stamp, self.frame_id))
         self.pub_info.publish(self._make_camera_info(stamp))
 
