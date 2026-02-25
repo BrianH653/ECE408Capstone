@@ -24,6 +24,16 @@ def generate_launch_description():
     thermal_overlay_bar    = DeclareLaunchArgument('thermal_overlay_bar',    default_value='true')
     thermal_overlay_text   = DeclareLaunchArgument('thermal_overlay_text',   default_value='true')
 
+    # rosbridge arguments (getting thermal camera data over http)
+    rosbridge_port = DeclareLaunchArgument('rosbridge_port', default_value='9090')
+    # Use 127.0.0.1 if you ONLY want local access; use 0.0.0.0 for LAN access
+    rosbridge_address = DeclareLaunchArgument('rosbridge_address', default_value='127.0.0.1')
+    
+    # thermal logger arguments
+    log_path = DeclareLaunchArgument('log_path', default_value='~/Desktop/thermal_log.csv')
+    sample_period = DeclareLaunchArgument('sample_period', default_value='1.0')
+    temp_threshold_c = DeclareLaunchArgument('temp_threshold_c', default_value='30.0')
+    
     webcam_group = GroupAction([
         PushRosNamespace('webcam'),
         Node(
@@ -73,6 +83,29 @@ def generate_launch_description():
         name='web_video_server',
         output='screen'
     )
+    
+    rosbridge = Node(
+        package='rosbridge_server',
+        executable='rosbridge_websocket',
+        name='rosbridge_websocket',
+        parameters=[{
+            'port': LaunchConfiguration('rosbridge_port'),
+            'address': LaunchConfiguration('rosbridge_address'),
+        }],
+        output='screen'
+    )
+    
+    thermal_logger = Node(
+        package='ht301_thermal_ros',
+        executable='thermal_csv_logger',
+        name='thermal_csv_logger',
+        output='screen',
+        parameters=[{
+            'log_path': LaunchConfiguration('log_path'),
+            'sample_period': LaunchConfiguration('sample_period'),
+            'temp_threshold_c': LaunchConfiguration('temp_threshold_c'),
+        }]
+    )
 
     return LaunchDescription([
         device_webcam,
@@ -86,8 +119,17 @@ def generate_launch_description():
         thermal_overlay_center,
         thermal_overlay_bar,
         thermal_overlay_text,
+        
+        rosbridge_port,
+        rosbridge_address,
+        
+        log_path,
+        sample_period,
+        temp_threshold_c,
 
         webcam_group,
         thermal_group,
-        web_video
+        web_video,
+        rosbridge,
+        thermal_logger
     ])

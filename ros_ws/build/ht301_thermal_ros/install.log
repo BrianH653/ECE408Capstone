@@ -1,10 +1,10 @@
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/ht301_thermal_publisher.py
-/home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/ht301_thermal_publisher_orig.py
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/ht301_hacklib.py
+/home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/thermal_csv_logger.py
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/__init__.py
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/__pycache__/ht301_thermal_publisher.cpython-312.pyc
-/home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/__pycache__/ht301_thermal_publisher_orig.cpython-312.pyc
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/__pycache__/ht301_hacklib.cpython-312.pyc
+/home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/__pycache__/thermal_csv_logger.cpython-312.pyc
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros/__pycache__/__init__.cpython-312.pyc
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/share/ament_index/resource_index/packages/ht301_thermal_ros
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/share/ht301_thermal_ros/package.xml
@@ -17,3 +17,4 @@
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros-0.0.0-py3.12.egg-info/SOURCES.txt
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/python3.12/site-packages/ht301_thermal_ros-0.0.0-py3.12.egg-info/dependency_links.txt
 /home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/ht301_thermal_ros/ht301_thermal_publisher
+/home/brian_holland/Desktop/capstone/ros_ws/install/ht301_thermal_ros/lib/ht301_thermal_ros/thermal_csv_logger

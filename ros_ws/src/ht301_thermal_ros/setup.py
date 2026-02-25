@@ -32,6 +32,7 @@ setup(
     entry_points={
         'console_scripts': [
             'ht301_thermal_publisher = ht301_thermal_ros.ht301_thermal_publisher:main',
+            'thermal_csv_logger = ht301_thermal_ros.thermal_csv_logger:main',
         ],
     },
 )
