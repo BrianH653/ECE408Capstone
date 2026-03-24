@@ -27,7 +27,7 @@ def generate_launch_description():
     # rosbridge arguments (getting thermal camera data over http)
     rosbridge_port = DeclareLaunchArgument('rosbridge_port', default_value='9090')
     # Use 127.0.0.1 if you ONLY want local access; use 0.0.0.0 for LAN access
-    rosbridge_address = DeclareLaunchArgument('rosbridge_address', default_value='127.0.0.1')
+    rosbridge_address = DeclareLaunchArgument('rosbridge_address', default_value='0.0.0.0')
     
     # thermal logger arguments
     log_path = DeclareLaunchArgument('log_path', default_value='~/Desktop/thermal_log.csv')

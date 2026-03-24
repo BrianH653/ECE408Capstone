@@ -4,41 +4,45 @@ Goal -
 
 
 test video from usb camera:
-
+```bash
 v4l2-ctl -d /dev/video0 \
-  --set-fmt-video=width=640,height=480,pixelformat=MJPG \
-  --stream-mmap --stream-count=300 --stream-to=video.mjpg
-  
+--set-fmt-video=width=640,height=480,pixelformat=MJPG \
+--stream-mmap --stream-count=300 --stream-to=video.mjpg
+```
   
   
 Installed on pi 4 (ubuntu 24.04 LTS Desktop) with ros2 jazzy
 
 *camera utils installation*
-- sudo apt install v4l-utils
-
+```bash
+sudo apt install v4l-utils
+```
 
 *Ros2 package installations*
-- sudo apt install ros-${ROS_DISTRO}-v4l2-camera
-- sudo apt install ros-${ROS_DISTRO}-image-transport-plugins
-- sudo apt install ros-${ROS_DISTRO}-web-video-server
-- sudo apt install ros-${ROS_DISTRO}-rosbridge-server
-
+```bash
+sudo apt install ros-${ROS_DISTRO}-v4l2-camera
+sudo apt install ros-${ROS_DISTRO}-image-transport-plugins
+sudo apt install ros-${ROS_DISTRO}-web-video-server
+sudo apt install ros-${ROS_DISTRO}-rosbridge-server
+```
 
 
 
 *Start RAW video streaming*
 
 1. Run v4l2 camera node
-    ros2 run v4l2_camera v4l2_camera_node --ros-args \
-  -p video_device:=/dev/video0
-
+```bash
+ros2 run v4l2_camera v4l2_camera_node --ros-args \
+-p video_device:=/dev/video0
+```
 2. Run video web server
-    ros2 run web_video_server web_video_server --ros-args \
-  -p port:=8080 \
-  -p default_stream_type:=mjpeg \
-  -p qos_profile:=sensor_data
-
-view available streams: http://localhost:8080
+```bash
+ros2 run web_video_server web_video_server --ros-args \
+-p port:=8080 \
+-p default_stream_type:=mjpeg \
+-p qos_profile:=sensor_data
+```
+view available streams: `http://localhost:8080`
 
 
 Ros packages for reference:
@@ -50,10 +54,12 @@ Ros packages for reference:
 *Test non-video streaming*
 
 1. Run launch file
-    ros2 launch ht301_thermal_ros camera_launch.py
-
+```bash
+ros2 launch ht301_thermal_ros camera_launch.py
+```
 2. go to temp_test/html folder and run:
-    python3 -m http.server 8000
-
+```bash
+python3 -m http.server 8000
+```
 3. Open browser
-    http://localhost:8000/temp_test.html
+`http://capstone408-desktop:8000/temp_test.html`
